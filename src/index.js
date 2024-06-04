@@ -1,40 +1,40 @@
-/* toTitleCase
-Write a function that will capitalize every word in a sentence.  
+/* Totally Not Another FizzBuzz 
 
-Example Input: "everything, everywhere, all at once"
-Example Output: "Everything, Everywhere, All At Once"
-*/
+Scrimba CEO Per Borgen wants you to write a program to grant special bonuses to all his employees based on their employee ID numbers! 
 
-/* 
-First, write a function that takes in one word and 
-capitalizes the first letter of that word.
+Scrimba has 100 employees and their employee ID numbers range from 1 - 100. If the employee's ID number is: 
 
-Example Input: "scrimba"
-Example Output: "Scrimba"
-
-Hint: Trying using slice() and .toUpperCase()
-*/
-
-function capitalizeWord(word){
-  const wArray = word.split("")
-  wArray[0] = wArray[0].toUpperCase()
-  return wArray.join("");
-}
-
-/* 
-Now write a function that capitalizes every word in a sentence. 
-How can you reuse the function you just wrote? 
-*/ 
-
-function toTitleCase(str){
-  const strArray = str.split(" ")
-  const newArray = strArray.map(word => {
-    return capitalizeWord(word)
+Divisible by 3 - Vacation! 
+Divisible by 5 - $100,000 bonus! 
+Divisible by both 3 and 5 - JACKPOT! 1 Million and a Yacht!
+Not divisible by 3 or 5 - :(
     
-  });
-  return newArray.join(" ")
+Write a program to loop through all the ID numbers and print their prize. 
+Your function's output should look something like this: 
+
+1 - :(
+2 - :(
+3 - Vacation! 
+4 - :(
+5 - $100,000 bonus!
+
+Hint: Remainder operator, modulo 
+ */
+
+function awardBonuses() {
+  for (let ii = 1; ii < 100; ii++) {
+    let reward = ":(";
+    if (!(ii % 3)) {
+      if (!(ii % 5)) {
+        reward = "JACKPOT! 1 Million and a Yacht!";
+      } else {
+        reward = "Vacation!";
+      }
+    } else if (!(ii % 5)) {
+      reward = "$100,000 bonus!";
+    }
+    console.log(ii + " " + reward);
+  }
 }
 
-// Test your functions
-console.log(capitalizeWord("pumpkin"));
-console.log(toTitleCase("pumpkin pranced purposefully across the pond"));
+awardBonuses();
