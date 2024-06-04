@@ -1,73 +1,65 @@
-/*  Emojify!
+/* 
 
-Popular services like Slack and Github allow for emoji shortscodes, meaning 
-they will detect when a word in a sentence begins and ends with a colon (:)
-and automatically replace that word with an emoji. 
+Anagrams are groups of words that can be spelled with the same letters. 
+For example, the letters in "pea" can be rearrange to spell "ape", and 
+the letters in "allergy" can be rearranged to spell "gallery."
 
-These shortcodes allow users to add an emoji to their messages by typing a 
-code rather than searching for an emoji from a list. 
+Write a function to check if two strings of lowercase letters are anagrams. 
+Return true if the word is an anagram. Return false if it isn't. 
 
-For example, typing :smile: will replace that text with 😊 
+Example input: "allergy", "gallery"
+Example output: true
 
-*/
+Example input: "rainbow", "crossbow"
+Example output: false
 
-const emojis = {
-  "smile": "😊",
-  "angry": "😠",
-  "party": "🎉",
-  "heart": "💜",
-  "cat":   "🐱",
-  "dog":   "🐕"
-}
-
-/* 1. Write a function that checks if a lowercase word starts and 
-ends with a colon. If it does, remove the colons and
-look up the word in the emoji object. If the word is in the 
-emojis object, return the corresponding emoji.
-If it isn't, return the original word.
-
-Example input: ":party:"
-Example output: 🎉
-
-Example input: ":flower:"
-Example output: "flower"
-
-Example input: "elephant"
-Example output: "elephant"
 */ 
 
-function emojifyWord(word){
-  const string = word.slice(1, word.length - 1)
-  const emo = emojis[string]
-  return emo || word;
-}
-
-/* 2. Write a function to find any emoji shortcodes in a phrase.
-Your function should map over each word in the phrase, emojify any word
-that begins and ends with a colon, then return the emojified phrase. 
-Feel free to use your emojify function from the previous exercise!
-
-Example input: "I :heart: my :cat:"
-Example output: "I 💜 my 🐱"
-
-Example input: "I :heart: my elephant"
-Example output: "I 💜 my elephant"
-*/ 
-
-function emojifyPhrase(phrase){
-  const words = phrase.split(" ")
-  const newWords = words.map((word) => {
-    return emojifyWord(word)
+function betterIsAnagram(str1, str2){
+  const arr1 = str1.split("")
+  const arr2 = str2.split("")
+  const arr3 = arr1.map((letter) => {
+    if(arr2.find((letter2) => letter === letter2)) {
+      return letter
+    }
   })
-
-  return newWords.join(" ");
+  
+  const arr4 = arr2.map((letter) => {
+    if(arr1.find((letter2) => letter2 === letter)) {
+      return letter
+    }
+  })
+  arr3.sort()
+  arr4.sort()
+  console.log('arr3: ', arr3)
+  if (arr3.join("") === arr4.join("")) {
+      return true
+  }
+  return false
 }
 
 
 
-console.log(emojifyWord(":heart:"));
-console.log(emojifyWord(":flower:"));
-console.log(emojifyWord("elephant"));
+function isAnagram(str1, str2){
+  const arr1 = str1.split("")
+  const arr2 = str2.split("")
+  let matches = true
+  arr1.forEach(letter => {
+    if(arr2.find((letter2) => letter === letter2)) {
+      console.log('letter: ', letter)
+    } else {
+      matches = false
+    }
+    
+  });
 
-console.log(emojifyPhrase("I :heart: my :cat:"));
-console.log(emojifyPhrase("I :heart: my :elephant:"));
+  console.log('arr1:', arr1)
+  return matches
+
+}
+
+// console.log(isAnagram("allergy", "gallery"));
+// console.log(isAnagram("treasure", "measure"));
+console.log(betterIsAnagram("allergy", "gallery"));
+console.log(betterIsAnagram("pea", "ape"));
+
