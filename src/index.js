@@ -16,19 +16,8 @@ Example output: false
 */ 
 
 function betterIsAnagram(str1, str2){
-  const arr1 = str1.split("")
-  const arr2 = str2.split("")
-  const arr3 = arr1.map((letter) => {
-    if(arr2.find((letter2) => letter === letter2)) {
-      return letter
-    }
-  })
-  
-  const arr4 = arr2.map((letter) => {
-    if(arr1.find((letter2) => letter2 === letter)) {
-      return letter
-    }
-  })
+  const arr3 = str1.split("")
+  const arr4 = str2.split("")
   arr3.sort()
   arr4.sort()
   console.log('arr3: ', arr3)
@@ -60,6 +49,6 @@ function isAnagram(str1, str2){
 
 // console.log(isAnagram("allergy", "gallery"));
 // console.log(isAnagram("treasure", "measure"));
-console.log(betterIsAnagram("allergy", "gallery"));
-console.log(betterIsAnagram("pea", "ape"));
+console.log(betterIsAnagram("alergy", "gallery"));
+console.log(betterIsAnagram("treasure", "measure"));
 
