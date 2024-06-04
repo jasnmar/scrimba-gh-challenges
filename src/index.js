@@ -19,11 +19,11 @@ console.log(panic("winter is coming"))
 
 function panic(str) {
   const words = str.split(" ")
-  const nWords = words.map((word) => word.toUpperCase())
-  let finalStr = ""
-  nWords.forEach(word => {
-    finalStr += word + " " + "😱" + " "
-  });
+  const nWords = words.map((word) => {
+    const nWord = word.toUpperCase()
+    return nWord + " 😱 "
+  })
+  let finalStr = nWords.join("")
   const strLength = finalStr.length
   const lastStr = finalStr.slice(0, finalStr.length - 4)
   return lastStr+"!"
