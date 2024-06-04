@@ -1,22 +1,40 @@
-/* Alternating Caps 
- Write a function that takes in a string of letters
- and returns a sentence in which every other letter is capitalized.
+/* toTitleCase
+Write a function that will capitalize every word in a sentence.  
 
-Example input: "I'm so happy it's Monday"
-Example output: "I'M So hApPy iT'S MoNdAy"
+Example Input: "everything, everywhere, all at once"
+Example Output: "Everything, Everywhere, All At Once"
 */
 
-function altCaps(str){
-  const strArray = str.split("")
-  for(let ii=0;ii<strArray.length;ii++){
-    if(!(ii % 2)) {
-      strArray[ii] = strArray[ii].toUpperCase()
-    } else {
-      strArray[ii] = strArray[ii].toLowerCase()
-    }
-  }
-  const newStr = strArray.join("")
-  return newStr;
+/* 
+First, write a function that takes in one word and 
+capitalizes the first letter of that word.
+
+Example Input: "scrimba"
+Example Output: "Scrimba"
+
+Hint: Trying using slice() and .toUpperCase()
+*/
+
+function capitalizeWord(word){
+  const wArray = word.split("")
+  wArray[0] = wArray[0].toUpperCase()
+  return wArray.join("");
 }
 
-console.log(altCaps("When you visit Portland you have to go to VooDoo Donuts"));
+/* 
+Now write a function that capitalizes every word in a sentence. 
+How can you reuse the function you just wrote? 
+*/ 
+
+function toTitleCase(str){
+  const strArray = str.split(" ")
+  const newArray = strArray.map(word => {
+    return capitalizeWord(word)
+    
+  });
+  return newArray.join(" ")
+}
+
+// Test your functions
+console.log(capitalizeWord("pumpkin"));
+console.log(toTitleCase("pumpkin pranced purposefully across the pond"));
