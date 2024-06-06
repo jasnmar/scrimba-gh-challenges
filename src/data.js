@@ -1,38 +1,46 @@
 export default [
   {
-      item: "🍭",
+      product: "🍭",
       price: 2.99,
-      type: "sweet",
-      onSale: true
   },
   {
-      item: "🍫",
-      price: 1.99, 
-      type: "sweet",
-      onSale: true
+      product: "🍫",
+      price: .99, 
   },
   {
-      item: "🥫",
-      price: 1.99, 
-      type: "savory",
-      onSale: false
+      product: "🏡",
+      price: 40000000
   },
   {
-      item: "🍬",
-      price: .89, 
-      type: "sweet",
-      onSale: false
+      product: "🧁",
+      price: .99, 
   },
   {
-      item: "🥦",
-      price: 3.99,
-      type: "savory",
-      onSale: false
+      product: "📚",
+      price: .99, 
+  },
+  {
+      product: "⏰",
+      price: 13.99, 
   }, 
   {
-      item: "🍖",
-      price: 3.99, 
-      type: "savory",
-      onSale: true
+      product: "🍬",
+      price: .89, 
+  },
+  {
+      product: "🥎",
+      price: 3.99,
+  }, 
+  {
+      product: "🎸",
+      price: 13.99, 
+  }, 
+  {
+      product: "🎨",
+      price: 23.99, 
+  }, 
+  {
+      product: "💕",
+      price: 0, 
   }, 
 ]
