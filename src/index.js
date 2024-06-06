@@ -1,43 +1,61 @@
 import podcasts from "./data.js";
 
-/* Night at the Scrimbies 
+/* 🌴 Save the Weekend 🌴
 
-It's time for the Scrimbies, a prestigious award show for podcast hosts.
-We need to assemble a list of podcast hosts so we can start handing out awards. 
+Your best friend is a copywriter who writes product descriptions 
+for a living. You want to use your hacking skills to help them 
+automate their job so you both can spend the weekend on a 
+tropical island. 
 
-Write a function that takes in the podcast data and
-returns a flat array of podcast hosts. There are quite a few ways to approach
-this, but try solving the problem using reduce(). 
+Use array methods and the existing podcast data to write a function that
+can generate a description for each podcast. 
 
-Once you have a flat array of hosts, write a second function to randomly assign each host a prize
-from the awards array. 
+Add the description as a new property on each podcast object, and return
+a new podcast array where each podcast has a description. 
 
-Example output: ["🏆 Alex Booker", "⭐ Bob Smith", "💎 Camilla Lambert" ...] 
+Each description should look like this: 
+[
+    {
+        id: 1,
+        title: "Scrimba Podcast", 
+        ...
+        description: "Scrimba Podcast is a 50 minute education podcast hosted 
+        by Alex Booker."
+    }
+    ...
+]
 
-*/
-const awards = ["🏆", "⭐", "💎", "🥇", "👑"];
+If the podcast has more than one host, you can display only the first host.
 
-function getHosts(data) {
-  const items = [];
-  const arr = data.reduce((list, curr) => {
-    return list.concat(curr.hosts)
-  }, []);
-  return arr
+Stretch goal: Display all three hosts in the description, seperated with commas: 
+
+Example description: "Coding Corner is a 55 minute education podcast hosted by Treasure Porth, Guil Hernandez, and Tom Chant."
+*/ 
+
+function createDescriptionsFor(data){
+   const array = data.map((podcast) => {
+    let hostInfo = ""
+    if(Array.isArray(podcast.hosts)) {
+      if(podcast.hosts.length === 1) {
+        hostInfo = podcast.hosts
+      } else if(podcast.hosts.length === 2) {
+          hostInfo = podcast.hosts[0] + " and " + podcast.hosts[1]
+      } else if(podcast.hosts.length > 1) {
+        for(let i=0; i<podcast.hosts.length-1; i++) {
+          hostInfo += podcast.hosts[i] + ", "
+        }
+        hostInfo += "and " + podcast.hosts[podcast.hosts.length-1]
+
+      }
+    } 
+
+
+    const description = `${podcast.title} is a ${podcast.duration} minute ${podcast.genre} podcast hosted by ${hostInfo}.` 
+    console.log('description: ', description)
+    podcast.description = description
+    return podcast
+   })
+   return array
 }
 
-function assignAwards(data) {
-  function getRandomInt() {
-    return Math.floor(Math.random() * awards.length);
-  }
-  const hosts = getHosts(data)
-  const awardsList = []
-  hosts.forEach(host => {
-    const rand = getRandomInt()
-    awardsList.push(awards[rand] + " " + host)
-  });
-  return awardsList
-
-}
-
-console.log(getHosts(podcasts));
-console.log(assignAwards(podcasts));
+console.log(createDescriptionsFor(podcasts))
