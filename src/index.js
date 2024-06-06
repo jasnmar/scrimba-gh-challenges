@@ -27,7 +27,23 @@ const kittyPrizes = [
 ];
 
 function flatten(arr){
-  return arr.flat()
+  const newItem = arr.reduce((acc, val) => acc.concat(val), [])
+  console.log('newItem: ', newItem)
+  return newItem
+  // const newArray = arr.map(element => {
+
+  //   // console.log('(Array.isArray(element): ', Array.isArray(element))
+  //   if(Array.isArray(element)) {
+  //     console.log('element: ', element)
+  //     const newItem = element.reduce((acc, val) => acc.concat(val), [])
+  //     console.log('newItem: ', newItem)
+  //     return newItem
+  //   } else {
+  //     return element
+  //   }
+  // });
+  console.log('newArray: ', newArray)
+  //return arr.flat()
 }
 
 console.log(flatten(kittyPrizes));
