@@ -1,38 +1,38 @@
-import userData from "./data.js";
+import podcasts from "./data.js";
 
-/* Totally Private Data Farm 
+/* Find Free Podcasts 
 
-Good news, renown advertising firm Evil Corp. wants to purchase our 
-private user data! 
+We have a list of podcasts and need the ability to filter by only
+podcasts which are free.
 
-We'd never do this in real life of course, but just for practice 
-let's pretend we're unethical web hackers and transform the data 
-in the way Evil Corp. has requested. They're quite particular and
-just want an array of users with a fullname and human readable
-birthday.   
+Write a function that takes in the podcast data and returns an new
+array of only those podcasts which are free.
 
-Write a function that maps through the current data and returns
-a new an array of objects with only two properties: 
-fullName and birthday. Each result in your 
-array should look like this when you're done: 
+Additionally, your new array should return only 
+objects containing only the podcast title, rating, and whether or 
+not it is paid. 
 
-{
-    fullName: "Levent Busser", 
-    birthday: "Fri Aug 20 1971"
-}
-
-Read about toDateString() for info on formatting a readable date. 
-
+Expected output: 
+[
+    {title: "Scrimba Podcast", rating: 10, paid: false}, 
+    {title: "Something about Witches", rating: 8, paid: false}, 
+    {title: "Coding Corner", rating: 9, paid: false}
+]
 */
-function transformData(data){
-  const arr = []
-  data.forEach(person => {
-    const fullName = person.name.first + " " + person.name.last
-    const birthday = new Date(person.dob.date).toDateString()
-    arr.push({fullName, birthday})
-  });
-  return arr
 
+function getFreePodcasts(data){
+  const arr = data.filter((podcast) => {
+    console.log('podcast:', podcast)
+    if (podcast.paid === false) {
+      return {title: podcast.title, rating: podcast.rating, paid: podcast.paid}
+    }
+    
+  })
+  const formattedArr = arr.map((podcast) => {
+    return {title: podcast.title, rating: podcast.rating, paid: podcast.paid}
+  })
+  return formattedArr
+   
 }
 
-console.log(transformData(userData));
+console.log(getFreePodcasts(podcasts))
