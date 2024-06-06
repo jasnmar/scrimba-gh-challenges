@@ -1,35 +1,38 @@
-/* Pizza Night? 
-It's the weekend and you and your friends can't agree on 
-what to order for dinner, so you put it to a vote. 
+import userData from "./data.js";
 
-Write a function to find the food with the highest number of votes. 
+/* Totally Private Data Farm 
 
-Your function should take in a food object and find the food
-with the most votes. It should log the winner, along with 
-how many votes it received.  
+Good news, renown advertising firm Evil Corp. wants to purchase our 
+private user data! 
 
-Example input: {"🐈 cats": 19, "🐕 dogs": 17} 
-Example output: The winner is 🐈 cats with 19 votes!
-*/ 
+We'd never do this in real life of course, but just for practice 
+let's pretend we're unethical web hackers and transform the data 
+in the way Evil Corp. has requested. They're quite particular and
+just want an array of users with a fullname and human readable
+birthday.   
 
-const gameNightFood = {
-  "🍕 pizza": 3, 
-  "🌮 tacos": 10, 
-  "🥗 salads": 7,
-  "🍝 pasta": 5
+Write a function that maps through the current data and returns
+a new an array of objects with only two properties: 
+fullName and birthday. Each result in your 
+array should look like this when you're done: 
+
+{
+    fullName: "Levent Busser", 
+    birthday: "Fri Aug 20 1971"
 }
 
-function findTheWinner(obj){
-  let entry = ""
-  let val = 0
-  for (const [key, value] of Object.entries(obj)) {
-    if(value > val) {
-      entry = key
-      val = value
-    }
-  }
-  return 'The winner is ' + entry + ' with ' + val + ' votes!'
+Read about toDateString() for info on formatting a readable date. 
+
+*/
+function transformData(data){
+  const arr = []
+  data.forEach(person => {
+    const fullName = person.name.first + " " + person.name.last
+    const birthday = new Date(person.dob.date).toDateString()
+    arr.push({fullName, birthday})
+  });
+  return arr
 
 }
 
-console.log(findTheWinner(gameNightFood));
+console.log(transformData(userData));
