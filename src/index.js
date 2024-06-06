@@ -1,61 +1,59 @@
-import podcasts from "./data.js";
+/* Find anagrams in an array   
 
-/* 🌴 Save the Weekend 🌴
+When two words have the exact same letters, they are anagrams. 
 
-Your best friend is a copywriter who writes product descriptions 
-for a living. You want to use your hacking skills to help them 
-automate their job so you both can spend the weekend on a 
-tropical island. 
+Each item in the anagrams array is an anagram of a Scrimba teacher's
+first and last name, plus the phrase "Scrimba teacher". 
 
-Use array methods and the existing podcast data to write a function that
-can generate a description for each podcast. 
+Write a function to determine which strings in the array are 
+anagrams of "Bob Ziroll Scrimba Teacher".
 
-Add the description as a new property on each podcast object, and return
-a new podcast array where each podcast has a description. 
+Your function should take two parameters: the phrase you want to compare to
+the anagrams, and an array of anagrams. The function should return
+a new array of anagrams that match the phrase. 
 
-Each description should look like this: 
-[
-    {
-        id: 1,
-        title: "Scrimba Podcast", 
-        ...
-        description: "Scrimba Podcast is a 50 minute education podcast hosted 
-        by Alex Booker."
-    }
-    ...
+Example input: treat, ["tater", "tree", "teart", "tetra", "heart", "hamster"]
+Example output: ["tater", "teart", "tetra"]
+
+Bonus: What other teachers are represented in these anagrams? 
+ */
+
+const anagrams = [
+  "moz biblical torchbearers",  
+  "it's razorbill beachcomber", 
+  "och mcrobbie trailblazers", 
+  "bib chorizo cellarmaster", 
+  "thor scribble carbimazole", 
+  "zilla borscht abercrombie", 
+  "brazil scorcher batmobile", 
+  "dame shelburne characterizing", 
+  "uber englishman characterized", 
+  "agnes rhumbline characterized", 
+  "rehab scrutinized charlemagne", 
+  "dreams zurich interchangeable", 
+  "bam hamster technocratic", 
+  "mechatronic masterbatch", 
+  "bam ratchet mechatronics"
 ]
 
-If the podcast has more than one host, you can display only the first host.
+function isAnagramInArray(anagram, arr){
+  const mainVal = anagram.toLowerCase().split(" ").join("").split("").sort()
+  console.log('mainVal: ', mainVal)
+  const result = []
+  arr.forEach(string => {
+    const comparison = string.toLowerCase().split(" ").join("").split("").sort()
+    console.log('comparison: ', comparison)
+    if(mainVal.join() === comparison.join()) {
+      console.log('equal')
+      result.push(string)
+    }
+    
+  });
+  
 
-Stretch goal: Display all three hosts in the description, seperated with commas: 
-
-Example description: "Coding Corner is a 55 minute education podcast hosted by Treasure Porth, Guil Hernandez, and Tom Chant."
-*/ 
-
-function createDescriptionsFor(data){
-   const array = data.map((podcast) => {
-    let hostInfo = ""
-    if(Array.isArray(podcast.hosts)) {
-      if(podcast.hosts.length === 1) {
-        hostInfo = podcast.hosts
-      } else if(podcast.hosts.length === 2) {
-          hostInfo = podcast.hosts[0] + " and " + podcast.hosts[1]
-      } else if(podcast.hosts.length > 1) {
-        for(let i=0; i<podcast.hosts.length-1; i++) {
-          hostInfo += podcast.hosts[i] + ", "
-        }
-        hostInfo += "and " + podcast.hosts[podcast.hosts.length-1]
-
-      }
-    } 
-
-
-    const description = `${podcast.title} is a ${podcast.duration} minute ${podcast.genre} podcast hosted by ${hostInfo}.` 
-    console.log('description: ', description)
-    podcast.description = description
-    return podcast
-   })
-   return array
+  return result
 }
 
-console.log(createDescriptionsFor(podcasts))
+
+console.log(isAnagramInArray("treat", ["tater", "tree", "teart", "tetra", "treat", "hamster"]))
+console.log(isAnagramInArray("Bob Ziroll Scrimba Teacher", anagrams));
