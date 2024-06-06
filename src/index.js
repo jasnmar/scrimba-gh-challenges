@@ -1,38 +1,26 @@
-import podcasts from "./data.js";
+import products from "./data.js";
 
-/* Find Free Podcasts 
-
-We have a list of podcasts and need the ability to filter by only
-podcasts which are free.
-
-Write a function that takes in the podcast data and returns an new
-array of only those podcasts which are free.
-
-Additionally, your new array should return only 
-objects containing only the podcast title, rating, and whether or 
-not it is paid. 
-
-Expected output: 
-[
-    {title: "Scrimba Podcast", rating: 10, paid: false}, 
-    {title: "Something about Witches", rating: 8, paid: false}, 
-    {title: "Coding Corner", rating: 9, paid: false}
-]
+/*
+   It's the day after Halloween 🎃 and all the candy is on sale!
+   
+   To buy up all the candy, use map() and filter() to put all the
+   candy into a `shoppingCart` array. 
+   
+   The new array should contain only the item and the price, like
+   this: 
+   
+   Expected output: 
+   [
+       {item: "🍭", price: 2.99},
+       {item: "🍫", price: 1.99}, 
+       {item: "🍬", price: 0.89}
+    ]
 */
 
-function getFreePodcasts(data){
-  const arr = data.filter((podcast) => {
-    console.log('podcast:', podcast)
-    if (podcast.paid === false) {
-      return {title: podcast.title, rating: podcast.rating, paid: podcast.paid}
-    }
-    
-  })
-  const formattedArr = arr.map((podcast) => {
-    return {title: podcast.title, rating: podcast.rating, paid: podcast.paid}
-  })
-  return formattedArr
-   
-}
-
-console.log(getFreePodcasts(podcasts))
+function getSaleItems(data){
+  const array = data.filter((item) => item.type === "sweet")
+  console.log('array: ', array)
+  const formattedArra = array.map((thing) => {return {item: thing.item, price: thing.price}})
+  return formattedArra
+};
+console.log(getSaleItems(products))
