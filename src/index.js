@@ -1,20 +1,35 @@
-/*
-Alex from Scrimba wants to know how many new students have attended 
-Scrimba's weekly Town Hall event this year. 
+/* Pizza Night? 
+It's the weekend and you and your friends can't agree on 
+what to order for dinner, so you put it to a vote. 
 
-He has an array of first-time attendees for each month of the year. 
-Help him find the total number of attendees! Your function should
-take in an array and return a number representing the total number
-of new attendees. 
+Write a function to find the food with the highest number of votes. 
 
-Example input: [1,2,3]
-Example output: 6
- */
+Your function should take in a food object and find the food
+with the most votes. It should log the winner, along with 
+how many votes it received.  
 
-const studentCount = [50,53,61,67,60,70,78,80,80,81,90,110];
+Example input: {"🐈 cats": 19, "🐕 dogs": 17} 
+Example output: The winner is 🐈 cats with 19 votes!
+*/ 
 
-function sumArray(arr){
-  return arr.reduce((acc, val) => acc += val, 0)
+const gameNightFood = {
+  "🍕 pizza": 3, 
+  "🌮 tacos": 10, 
+  "🥗 salads": 7,
+  "🍝 pasta": 5
 }
-console.log(sumArray([1,2,3]));
-console.log(sumArray(studentCount));
+
+function findTheWinner(obj){
+  let entry = ""
+  let val = 0
+  for (const [key, value] of Object.entries(obj)) {
+    if(value > val) {
+      entry = key
+      val = value
+    }
+  }
+  return 'The winner is ' + entry + ' with ' + val + ' votes!'
+
+}
+
+console.log(findTheWinner(gameNightFood));
