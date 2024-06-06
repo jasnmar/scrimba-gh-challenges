@@ -37,13 +37,16 @@ const anagrams = [
 ]
 
 function isAnagramInArray(anagram, arr){
-  const mainVal = anagram.toLowerCase().split(" ").join("").split("").sort()
+  function fixLetters(string) {
+    return string.toLowerCase().split("").sort().join("").trim()
+  }
+  const mainVal = fixLetters(anagram)
   console.log('mainVal: ', mainVal)
   const result = []
   arr.forEach(string => {
-    const comparison = string.toLowerCase().split(" ").join("").split("").sort()
+    const comparison = fixLetters(string)
     console.log('comparison: ', comparison)
-    if(mainVal.join() === comparison.join()) {
+    if(mainVal === comparison) {
       console.log('equal')
       result.push(string)
     }
