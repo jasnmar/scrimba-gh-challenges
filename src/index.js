@@ -1,46 +1,43 @@
 import podcasts from "./data.js";
 
-/* Welcome Aboard Scrimba Airlines 
+/* Night at the Scrimbies 
 
-Our Scrimba Airlines in-flight entertainment package 
-includes a variety of podcasts. We need to add a feature that suggests
-podcasts to our patrons based on whether a flight is short or long. 
+It's time for the Scrimbies, a prestigious award show for podcast hosts.
+We need to assemble a list of podcast hosts so we can start handing out awards. 
 
-Your sort function should take two arguments: the podcast data and
-flight length. If the flight is 60 minutes or less, sort the podcast list 
-from shortest to longest. If it's anything else, sort from longest
-to shortest. 
+Write a function that takes in the podcast data and
+returns a flat array of podcast hosts. There are quite a few ways to approach
+this, but try solving the problem using reduce(). 
 
-Your function shouldn't return anything. Instead log a numbered list 
-of the title and duration of 
-each podcast to the console, like this:
+Once you have a flat array of hosts, write a second function to randomly assign each host a prize
+from the awards array. 
 
-1. Crime Fan, 150 minutes
-2. Mythical Creatures, 99 minutes
-3. Crime Crime Crime, 70 minutes
-4. Coding Corner, 55 minutes
-5. Scrimba Podcast, 50 minutes
-6. Something about Witches, 35 minutes
+Example output: ["🏆 Alex Booker", "⭐ Bob Smith", "💎 Camilla Lambert" ...] 
 
 */
+const awards = ["🏆", "⭐", "💎", "🥇", "👑"];
 
-function sortByDuration(data, flightLength){
-
-  data.sort(compare)
-  function compare(a, b) {
-    if(flightLength <= 60){
-      return a.duration - b.duration
-    } else {
-      return b.duration - a.duration
-    }
-  }
-  let i = 0
-  data.forEach(podcast => {
-    i++
-    console.log(`${i} ${podcast.title} ${podcast.duration}` )
-    
-  });
-  
+function getHosts(data) {
+  const items = [];
+  const arr = data.reduce((list, curr) => {
+    return list.concat(curr.hosts)
+  }, []);
+  return arr
 }
 
-sortByDuration(podcasts, 60);
+function assignAwards(data) {
+  function getRandomInt() {
+    return Math.floor(Math.random() * awards.length);
+  }
+  const hosts = getHosts(data)
+  const awardsList = []
+  hosts.forEach(host => {
+    const rand = getRandomInt()
+    awardsList.push(awards[rand] + " " + host)
+  });
+  return awardsList
+
+}
+
+console.log(getHosts(podcasts));
+console.log(assignAwards(podcasts));
