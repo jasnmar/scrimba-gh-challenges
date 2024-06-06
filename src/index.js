@@ -1,15 +1,25 @@
+
 import shoppingCart from "./data.js";
 
-/*  
-Use reduce() to total the groceries. 
-Then find a method that will round the total to 2 decimal places.
+/*
+Use reduce() and only reduce() to calculate and return 
+the total cost of only the savory
+items in the shopping cart.
 
-Example output: 73.44
+Expected output: 9.97  
 */
 
-function total(arr){
-  const sum = arr.reduce((total, current) => total += current.price, 0)
-  return parseFloat(sum).toFixed(2)
+function totalSavory(arr){ 
+  const total = arr.reduce((total, current) => {
+    if(current.type === "savory") {
+      return total + current.price
+    } else {
+      return total
+    }
+  }, 0)
+
+  return total
 }
 
-console.log(total(shoppingCart));
+console.log(totalSavory(shoppingCart));
+
