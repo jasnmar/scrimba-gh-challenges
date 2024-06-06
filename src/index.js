@@ -1,29 +1,46 @@
-import mediaData from "./data.js";
+import podcasts from "./data.js";
 
-/* Find All Unique Tags 
+/* Welcome Aboard Scrimba Airlines 
 
-As a software dev at ScrimFlix, you're working on a feature 
-to let users browse TV shows by tag. The first step is to collect all 
-the tags from our data into a new array. Then we'll need 
-to filter out the duplicate tags. 
+Our Scrimba Airlines in-flight entertainment package 
+includes a variety of podcasts. We need to add a feature that suggests
+podcasts to our patrons based on whether a flight is short or long. 
 
-Write a function that takes in the media data and returns
-a flat array of unique tags.
+Your sort function should take two arguments: the podcast data and
+flight length. If the flight is 60 minutes or less, sort the podcast list 
+from shortest to longest. If it's anything else, sort from longest
+to shortest. 
 
-Expected output: 
-["supernatural", "horror", "drama",
-"fantasy", "reality", "home improvement", "comedy", "sci-fi", "adventure"]
+Your function shouldn't return anything. Instead log a numbered list 
+of the title and duration of 
+each podcast to the console, like this:
 
-*/ 
+1. Crime Fan, 150 minutes
+2. Mythical Creatures, 99 minutes
+3. Crime Crime Crime, 70 minutes
+4. Coding Corner, 55 minutes
+5. Scrimba Podcast, 50 minutes
+6. Something about Witches, 35 minutes
 
-function getUniqueTags(data){
-  const result = []
-  const arr = data.map((show)=> {
-    result.push(show.tags)
-    return show.tags
-  })
-  return [...new Set(result.flat())]
+*/
+
+function sortByDuration(data, flightLength){
+
+  data.sort(compare)
+  function compare(a, b) {
+    if(flightLength <= 60){
+      return a.duration - b.duration
+    } else {
+      return b.duration - a.duration
+    }
+  }
+  let i = 0
+  data.forEach(podcast => {
+    i++
+    console.log(`${i} ${podcast.title} ${podcast.duration}` )
+    
+  });
+  
 }
 
-console.log(getUniqueTags(mediaData));
-
+sortByDuration(podcasts, 60);
